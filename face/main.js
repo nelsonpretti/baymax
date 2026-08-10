@@ -79,6 +79,22 @@ function createWindow() {
   win.webContents.on('console-message', (_e, _lvl, msg) => console.log('[face]', msg));
   win.loadFile('index.html');
   win.on('closed', () => { win = null; });
+
+  // Drag any edge and the robot grows or shrinks with the window, keeping its
+  // shape: macOS constrains the drag to this ratio, and the new size is written
+  // back into settings so the canvas is redrawn at it. Without the write-back
+  // the canvas stayed at whatever the sliders last said and the robot appeared
+  // frozen mid-window.
+  win.setAspectRatio(settings.width / settings.height);
+  win.on('resize', () => {
+    if (!win || win.isDestroyed() || panelOpen) return;   // the panel widens the
+    const [w, h] = win.getSize();                          // window on purpose
+    if (w === settings.width && h === settings.height) return;
+    settings.width = w;
+    settings.height = h;
+    saveSettings();
+    win.webContents.send('face-size', { width: w, height: h });
+  });
 }
 
 function startCursorPolling() {
@@ -240,6 +256,9 @@ ipcMain.handle('set-settings', (_e, next) => {
   settings = { ...settings, ...next };
   saveSettings();
   if (win && !win.isDestroyed() && (next.width || next.height)) {
+    // The sliders set width and height independently, so they also define a new
+    // shape for the drag lock to hold.
+    win.setAspectRatio(settings.width / settings.height);
     win.setSize(Math.round(settings.width), Math.round(settings.height));
   }
   return settings;
@@ -253,13 +272,18 @@ ipcMain.handle('set-settings', (_e, next) => {
 // because a fixed number silently clipped the bottom controls off whenever the
 // panel gained a row or the face was set short.
 const PANEL_STRIP = 232;
+let panelOpen = false;
 ipcMain.on('panel', (_e, open, needed) => {
   if (!win) return;
+  panelOpen = !!open;
   const [x, y] = win.getPosition();
   const w = settings.width + (open ? PANEL_STRIP : 0);
   const h = open
     ? Math.max(settings.height, Math.ceil(needed || 430))
     : settings.height;
+  // The panel is a strip beside the face, so while it is open the window is
+  // deliberately the wrong shape. Release the lock, then put it back.
+  win.setAspectRatio(open ? 0 : settings.width / settings.height);
   win.setBounds({ x, y, width: w, height: h });
 });
 

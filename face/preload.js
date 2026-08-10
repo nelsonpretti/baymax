@@ -12,6 +12,7 @@ contextBridge.exposeInMainWorld('face', {
   onListen: (fn) => ipcRenderer.on('listen', (_e, d) => fn(d)),
   onHotkey: (fn) => ipcRenderer.on('hotkey', (_e, d) => fn(d)),
   onLimit: (fn) => ipcRenderer.on('limit', (_e, d) => fn(d)),
+  onFaceSize: (fn) => ipcRenderer.on('face-size', (_e, d) => fn(d)),
   captureHotkey: () => ipcRenderer.invoke('capture-hotkey'),
   panel: (open, needed) => ipcRenderer.send('panel', open, needed),
   moveBy: (dx, dy) => ipcRenderer.send('move-by', { dx, dy }),

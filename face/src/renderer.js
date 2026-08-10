@@ -560,6 +560,20 @@ function bindPanel() {
 
   window.face.onLimit((d) => { limit = d; });
 
+  // The window was dragged: redraw at the new size and move the sliders to match,
+  // so the panel never disagrees with what is on screen.
+  window.face.onFaceSize(({ width, height }) => {
+    settings.width = width;
+    settings.height = height;
+    layout();
+    for (const [key, valId] of [['width', 'widthVal'], ['height', 'heightVal']]) {
+      const el = document.getElementById(key);
+      if (el) el.value = settings[key];
+      const out = document.getElementById(valId);
+      if (out) out.textContent = settings[key];
+    }
+  });
+
   // Dragging by hand, because the window is no longer an OS drag region — it
   // has to be able to tell a drag from a poke.
   let press = null;
