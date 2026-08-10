@@ -1,0 +1,73 @@
+.gitignore
+  s_8311e50355240c::t_60ab5212a6a2cd 1-5
+README.md
+  s_8311e50355240c::t_4885c846ca1c54 1-205
+bin/baymax-start
+  s_8311e50355240c::t_bb7242d5e03c0a 1-33
+bin/baymax-stop
+  s_8311e50355240c::t_0546a037fee399 1-26
+bin/register-hooks.py
+  s_8311e50355240c::t_9ca0c8e08cdfca 1-135
+bin/statusline-limit.js
+  s_8311e50355240c::t_d653b730b069a9 1-50
+bin/voice-daemon.py
+  s_8311e50355240c::t_e8b06f95b12a00 1-199
+bin/voice-listener.py
+  s_8311e50355240c::t_47d7e701a9ec0a 1-594
+claude/hooks/voice-checkin-counter.sh
+  s_8311e50355240c::t_38d0cf341a9b1c 1-61
+claude/hooks/voice-output.sh
+  s_8311e50355240c::t_f62cc23ab66603 1-115
+claude/hooks/voice-posttool.sh
+  s_8311e50355240c::t_0f7c319f1c3c08 1-91
+claude/hooks/voice-timer.sh
+  s_8311e50355240c::t_5b3740bf1c71d6 1-75
+claude/hooks/voice-user-prompt.sh
+  s_8311e50355240c::t_ff62bb8fc8f966 1-49
+claude/skills/voice/SKILL.md
+  s_8311e50355240c::t_c5f36986a559ff 1-213
+face/index.html
+  s_8311e50355240c::t_a69a75ec3ee325 1-107
+face/main.js
+  s_8311e50355240c::t_166da76fa183bc 1-287
+face/package.json
+  s_8311e50355240c::t_bb09bd0c9cba29 1-12
+face/preload.js
+  s_8311e50355240c::t_b4099dfd464bd2 1-20
+face/scripts/find_window.py
+  s_8311e50355240c::t_ac060e8ac79bfa 1-19
+face/scripts/parade_moods.py
+  s_8311e50355240c::t_7a64bc769071b6 1-60
+face/scripts/snapshot.py
+  s_8311e50355240c::t_dfbcc60663ab33 1-22
+face/src/renderer.js
+  s_8311e50355240c::t_e9815e02ff6bd1 1-595
+face/src/robot.js
+  s_8311e50355240c::t_7883cfe550a20c 1-940
+face/src/wav.js
+  s_8311e50355240c::t_baa21bf12e0b5a 1-232
+install.sh
+  s_8311e50355240c::t_02b7f8764ef496 1-127
+requirements.txt
+  s_8311e50355240c::t_0023e94d772e0f 1-12
+uninstall.sh
+  s_8311e50355240c::t_d4ae77f1165b38 1-43
+LICENSE
+  s_8311e50355240c::t_3c244530081826 1-21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "fe3e3698f419a8287b7385239aff45265f8102f2",
+  "prompts": {},
+  "sessions": {
+    "s_8311e50355240c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fc6ef276-177e-4b99-9b5c-54b06c5e50c5",
+        "model": "claude-opus-5"
+      },
+      "human_author": "unknown"
+    }
+  }
+}
