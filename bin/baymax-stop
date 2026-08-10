@@ -1,0 +1,26 @@
+#!/bin/bash
+# Stop everything voice-related. Leaves the install in place.
+set -uo pipefail
+
+BAYMAX_ENV="$HOME/.claude/.baymax-env"
+# shellcheck source=/dev/null
+[ -f "$BAYMAX_ENV" ] && . "$BAYMAX_ENV"
+
+# --keep-voice leaves the speech daemon alive (it is slow to reload its model, and it
+# only speaks while ~/.claude/.voice-enabled exists anyway). Used when /baymax turns
+# voice mode off, as opposed to shutting the whole thing down.
+PATTERNS=("voice-daemon.py" "voice-listener.py" "electron .*/face")
+if [ "${1:-}" = "--keep-voice" ]; then
+  PATTERNS=("voice-listener.py" "electron .*/face")
+fi
+
+for pattern in "${PATTERNS[@]}"; do
+  if pkill -f "$pattern" 2>/dev/null; then
+    echo "  stopped $pattern"
+  fi
+done
+
+# A recording left running would hold the microphone open for ever.
+pkill -x rec 2>/dev/null && echo "  stopped a recording that was still going"
+[ "${1:-}" = "--keep-voice" ] || rm -f /tmp/voice-daemon.sock
+echo "Done."

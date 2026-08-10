@@ -1,0 +1,12 @@
+# Text to speech. Kokoro is a small, fast, good-sounding model; it pulls its
+# own 314 MB of weights from Hugging Face the first time it runs.
+kokoro>=0.9
+soundfile>=0.12
+
+# Reads the keyboard globally so the hotkey works from any application, and
+# types the transcript into the terminal running Claude Code.
+pyobjc-framework-Quartz>=10.0
+
+# Optional: tidies a long rambling transcript into a clean prompt before Claude
+# sees it. Only used if you put a key in ~/.claude/.voice-api-key.
+anthropic>=0.40

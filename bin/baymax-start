@@ -1,0 +1,33 @@
+#!/bin/bash
+# Start the voice daemon, the hotkey listener and the robot face.
+#
+# You rarely need this: the Claude Code hooks start the two daemons on their
+# own the first time you use voice. It is here for starting the face on its
+# own, and for putting everything back after a reboot.
+set -euo pipefail
+
+BAYMAX_ENV="$HOME/.claude/.baymax-env"
+[ -f "$BAYMAX_ENV" ] || { echo "Not installed — run install.sh first."; exit 1; }
+# shellcheck source=/dev/null
+. "$BAYMAX_ENV"
+
+start_if_missing() {
+  local pattern="$1" name="$2"; shift 2
+  if pgrep -f "$pattern" >/dev/null 2>&1; then
+    echo "  $name already running"
+  else
+    nohup "$@" >> "/tmp/${name}.log" 2>&1 &
+    disown
+    echo "  $name started"
+  fi
+}
+
+start_if_missing "voice-daemon.py" voice-daemon \
+  "$BAYMAX_PYTHON" "$BAYMAX_HOME/bin/voice-daemon.py"
+start_if_missing "voice-listener.py" voice-listener \
+  "$BAYMAX_PYTHON" "$BAYMAX_HOME/bin/voice-listener.py"
+start_if_missing "electron .*$BAYMAX_HOME/face" robot-face \
+  "$BAYMAX_HOME/face/node_modules/.bin/electron" "$BAYMAX_HOME/face"
+
+echo
+echo "Logs: /tmp/voice-daemon.log  /tmp/voice-listener.log  /tmp/robot-face.log"
