@@ -1,0 +1,21 @@
+CLAUDE.md
+  s_8311e50355240c::t_e5bd9e245ede9a 1-145
+uninstall.sh
+  s_8311e50355240c::t_4615633aa30aab 36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "585ae7eb63e52336cb96ea4be99d9270a4aa6b99",
+  "prompts": {},
+  "sessions": {
+    "s_8311e50355240c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fc6ef276-177e-4b99-9b5c-54b06c5e50c5",
+        "model": "claude-opus-5"
+      },
+      "human_author": "unknown"
+    }
+  }
+}
