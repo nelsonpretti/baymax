@@ -24,8 +24,13 @@ if ! command -v brew >/dev/null 2>&1; then
   die "Homebrew is required. Install it from https://brew.sh and run this again."
 fi
 
-say "Installing system packages (sox, whisper.cpp, node, python)"
-for pkg in sox whisper-cpp node python@3.12; do
+# espeak-ng is not obvious from the package list: Kokoro reaches it through
+# espeakng_loader for its phoneme tables, and without it the voice model fails at
+# first use with "No such file or directory ... espeak-ng-data/phontab". Found by
+# running this installer against an empty home directory on 2026-08-10 — it had
+# always worked here only because espeak-ng was already installed for something else.
+say "Installing system packages (sox, whisper.cpp, espeak-ng, node, python)"
+for pkg in sox whisper-cpp espeak-ng node python@3.12; do
   if brew list --formula "$pkg" >/dev/null 2>&1; then
     echo "    $pkg already there"
   else
