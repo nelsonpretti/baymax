@@ -33,6 +33,7 @@ elif command -v python3 >/dev/null 2>&1; then
 fi
 
 rm -f "$CLAUDE_DIR"/hooks/voice-*.sh
+rm -f "$CLAUDE_DIR/hooks/statusline-limit.js"
 rm -rf "$CLAUDE_DIR/skills/baymax"
 rm -f "$CLAUDE_DIR/.baymax-env" "$CLAUDE_DIR/.voice-enabled"
 rm -rf "$BAYMAX_DATA"
