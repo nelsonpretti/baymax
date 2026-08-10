@@ -23,13 +23,19 @@
 
 ---
 
-You type a question. Claude answers on screen **and says it out loud** — not the
-text read back at you, a shorter spoken take, the way a colleague would tell you
-across a desk. You hold a key and talk back. And a small robot floats above your
-windows, lip-syncing, blinking, watching your cursor, and pulling a face at
-whatever Claude is currently doing.
+## Bring your Claude to life
 
-Everything runs on your Mac. Your speech never leaves it.
+**Improved voice experience with a two-way conversation.** You talk to Claude
+and it talks back to you.
+
+**Better prompting.** Say it however it comes out of your head. Your rambling
+gets organised into a sharp prompt before Claude reads it, so you get a better
+answer for less effort.
+
+**A desktop companion.** Baymax lives on your screen (optional), reacts to what
+Claude is doing, and keeps you company while it works.
+
+One command, all on your Mac, and your voice never leaves it.
 
 ## 📥 Install
 
