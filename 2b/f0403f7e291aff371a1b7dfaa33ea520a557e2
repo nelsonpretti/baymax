@@ -1,0 +1,19 @@
+install.sh
+  s_8311e50355240c::t_7fd3a13438ab85 27-33
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "2bf0403f7e291aff371a1b7dfaa33ea520a557e2",
+  "prompts": {},
+  "sessions": {
+    "s_8311e50355240c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fc6ef276-177e-4b99-9b5c-54b06c5e50c5",
+        "model": "claude-opus-5"
+      },
+      "human_author": "unknown"
+    }
+  }
+}
