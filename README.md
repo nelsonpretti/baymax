@@ -146,9 +146,10 @@ Click the gear that appears when your pointer is over the face.
 
 ## 🧹 Cleaning up rambling
 
-Speech comes out messy. If you put an Anthropic API key in
-`~/.claude/.voice-api-key`, anything longer than twelve words gets tidied into a
-clean prompt before Claude reads it — filler removed, structure added, nothing
+Speech comes out messy. The installer asks for an Anthropic API key (skip it and
+everything else still works; add it later by writing it to
+`~/.claude/.voice-api-key`). With a key, anything longer than twelve words gets
+tidied into a clean prompt before Claude reads it — filler removed, structure added, nothing
 invented and nothing dropped. This is the only thing here that leaves your
 machine, it costs a fraction of a cent per message, and without a key everything
 still works, just less tidily.

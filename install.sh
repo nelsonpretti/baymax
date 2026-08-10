@@ -100,6 +100,32 @@ EOF
 
 chmod +x "$BAYMAX_HOME"/bin/baymax-* "$BAYMAX_HOME"/bin/*.py 2>/dev/null || true
 
+# --- 4b. the optional key that turns rambling into a clean prompt ------------
+# Without this, speech reaches Claude exactly as it came out of your mouth. With
+# it, anything over twelve words is tidied by Haiku first. Skipping is fine and
+# everything else still works; you can add the key later by writing it to
+# ~/.claude/.voice-api-key.
+KEY_FILE="$CLAUDE_DIR/.voice-api-key"
+if [ -s "$KEY_FILE" ]; then
+  say "Anthropic API key already set — speech clean-up is on"
+elif [ -t 0 ]; then
+  echo
+  say "Optional: an Anthropic API key tidies rambling speech into a clean prompt"
+  echo "    Get one at https://console.anthropic.com — costs a fraction of a cent"
+  echo "    per message. Press Return to skip."
+  printf '    Key (sk-ant-...): '
+  read -r ANTHROPIC_KEY_INPUT || ANTHROPIC_KEY_INPUT=""
+  if [ -n "$ANTHROPIC_KEY_INPUT" ]; then
+    printf '%s' "$ANTHROPIC_KEY_INPUT" > "$KEY_FILE"
+    chmod 600 "$KEY_FILE"
+    echo "    saved to $KEY_FILE"
+  else
+    echo "    skipped — speech goes to Claude exactly as spoken"
+  fi
+else
+  warn "No terminal to ask on — add an Anthropic key to $KEY_FILE later if you want speech clean-up"
+fi
+
 # --- 5. what the user still has to do ---------------------------------------
 cat <<EOF
 
