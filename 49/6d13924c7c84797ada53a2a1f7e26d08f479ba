@@ -1,0 +1,21 @@
+README.md
+  s_8311e50355240c::t_60d0be28013f20 149-152
+install.sh
+  s_8311e50355240c::t_870b0259663e07 103-128
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "496d13924c7c84797ada53a2a1f7e26d08f479ba",
+  "prompts": {},
+  "sessions": {
+    "s_8311e50355240c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fc6ef276-177e-4b99-9b5c-54b06c5e50c5",
+        "model": "claude-opus-5"
+      },
+      "human_author": "unknown"
+    }
+  }
+}
